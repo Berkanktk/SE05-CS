@@ -1,11 +1,11 @@
 # Exercises
-## 01a) You should have all the VMs running
+# 01a) You should have all the VMs running
 Done (See Lab-01a)
 
-## 01b Finish the exercise 01b
+# 01b Finish the exercise 01b
 Done (See Lab-01b)
 
-## 02a Group work: thinking about threats
+# 02a Group work: thinking about threats
 **Brain storm about how the attack surface looks like, i.e., whereone could attack the system.**
 
 ![Thinking about threats](/Lab-02/2a_thinking_about_threats.png)
@@ -17,9 +17,8 @@ Done (See Lab-01b)
 * Privilege escalation
 * Social engineering
 
-
-## 02b Tutorial on Metasploit | Walk through in Exercise
-### (Virtual Box) Networking Options
+# 02b Tutorial on Metasploit | Walk through in Exercise
+## (Virtual Box) Networking Options
 **Explain to your group or shortly write down the explanation for:**
 
 Network Address Translation (NAT)
@@ -35,7 +34,7 @@ Bridged networking
 Host only
 * This can be used to create a network containing the host and a set of virtual machines, without the need for the host's physical network interface. Instead, a virtual network interface, similar to a loopback interface, is created on the host, providing connectivity among virtual machines and the host.
 
-### Prepping our Exercise: VM ip address
+## Prepping our Exercise: VM ip address
 **Which command would you use to get the IP in Linux?**  
 
 ```console
@@ -52,7 +51,7 @@ berkankutuk@kali:~$ ipconfig
 **Inspect the whole network configuration of the Linux metasploitable VM, i.e., interfaces, ip addresses, routes.**  
 Done
 
-### Testing the Tools Presented in Class
+## Testing the Tools Presented in Class
 **Using John the Ripper to brute-force Kali's password database. Make things more interesting by changing your password with the passwd command.**  
 
 ```console
@@ -129,7 +128,7 @@ berkankutuk@kali:~$ nc 10.0.2.15 1337 > received.txt # Connecting to the port
 berkankutuk@kali:~$ cat received.txt # Checking the content
 ```
 
-## Simulating Remote Access
+# Simulating Remote Access
 Attacker: 10.0.2.15 (Kali Linux)  
 Target: 10.0.2.4 (metasploitable)  
 
@@ -158,7 +157,7 @@ berkankutuk@kali:~$ man msfvenom | grep "\-f" # Using the manual page to get the
 
 Answer: The flag `-f` sets the output format
 
-## Setting up a Listener
+# Setting up a Listener
 **The above malicious code is trying to access a configured host/port combination, awaiting further instructions. Therefore, we have to provide a server the malicious code can connect to.**
 
 ```console
@@ -190,7 +189,7 @@ meterpreter:~$ ls # Testing connection
 ```
 Boom pwned!
 
-## Enjoying Your Connection
+# Enjoying Your Connection
 Getting the username
 
 ```console
@@ -234,7 +233,7 @@ Reverse shell
 **Explain how you can make someone download and install the malicious file in his/her environment that is vulnerable as well as one that is not vulnerable.**    
 Sending the file via email or from another platform to a target person.
 
-## Further Questions
+# Further Questions
 **What is the practical use of this exercise? And why is the payload working in the way it is?**  
 To showcase how we can obtain a reverse shell, which in this case is working because no work have been done in order to secure the target machine. 
 
