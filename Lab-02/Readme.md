@@ -24,9 +24,8 @@ Done (See Lab-01b)
 Network Address Translation (NAT)
 * It's a way to map multiple local private addresses to a public one before transferring the information
 
-
 NAT Network
-*  A NAT network is a type of internal network that allows outbound connections
+* A NAT network is a type of internal network that allows outbound connections
 
 Bridged networking
 * This is for more advanced networking needs, such as network simulations and running servers in a guest. When enabled, VirtualBox connects to one of your installed network cards and exchanges network packets directly, circumventing your host operating system's network stack.
@@ -52,22 +51,22 @@ berkankutuk@kali:~$ ipconfig
 Done
 
 ## Testing the Tools Presented in Class
-**Using John the Ripper to brute-force Kali's password database. Make things more interesting by changing your password with the passwd command.**  
+### Using John the Ripper to brute-force Kali's password database. 
+Make things more interesting by changing your password with the passwd command.
 
 ```console
 berkankutuk@kali:~$ .\john.exe passwordfile –wordlist=”wordlist.txt # To generally brute force a password file
 berkankutuk@kali:~$ passwd berkankutuk # Changing password
 ```
 
-**Check for open sockets with netstat or ss. Start the apache2 web server and check again.
+### Check for open sockets with netstat or ss. Start the apache2 web server and check again.
 Use nmap on Kali to find the other virtual machines**  
 
 ```console
 berkankutuk@kali:~$ nmap -sT -A 10.0.2.0/24
 ```
 
-**Perform all examples for netcat, i.e.,**  
-**Create a listener and connect to it from another terminal window cf. "Opening Pipes Over the Network".**  
+### Create a listener and connect to it from another terminal window cf. "Opening Pipes Over the Network".* 
 
 ```console
 berkankutuk@kali:~$ nc -lvp 1337 # Listening on a port
@@ -80,7 +79,7 @@ berkankutuk@kali:~$ ifconfig # Find machine ip=10.0.2.15
 berkankutuk@kali:~$ nc 10.0.2.15 1337 # Connecting to port
 ```
 
-**Connect to a remote shell cf. "Opening a Shell Over the Network with netcat".**  
+### Connect to a remote shell cf. "Opening a Shell Over the Network with netcat".
 Host machine ip: 10.0.2.15
 
 ```console
@@ -94,7 +93,7 @@ berkankutuk@kali:~$ nc 10.0.2.15 1337 # Connecting to the port
 berkankutuk@kali:~$ whoami # Testing access
 ```
 
-**Perform the "Basic Reverse Shell" example.**  
+### Perform the "Basic Reverse Shell" example.
 Host machine ip: 10.0.2.15
 
 ```console
@@ -112,8 +111,7 @@ and back to host machine
 ```console
 berkankutuk@kali:~$ whoami # Testing access
 ```
-
-**Transfer a file with netcat.**  
+### Transfer a file with netcat.  
 Host machine ip: 10.0.2.15
 
 ```console
