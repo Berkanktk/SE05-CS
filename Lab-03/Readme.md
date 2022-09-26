@@ -11,16 +11,218 @@ In this lab you will perform steps of an assessment:
 * [x] Windows Metasploitable3
 
 # Finding information with whois `TODO` 
-1. Try to gather information on SDU with whois.
-2. Try whois on the \emph{IP address} of www.sdu.dk .
-3. †What do you learn about SDU’s network? In the protocol, note the IP
-range.
-4. Are there other Networking-Services @SDU which you could try?
-5. †What is the whois information for nextcloud.sdu.dk ? What do you observe
-in comparison to the whois-information you gathered for www.sdu.dk.
-6. Important: You can also perform whois on domains, for example sdu.dk,
-but -- depending on the implementation -- only on the registered domain, not any hosts in it. But you can use whois on the IP addresses associated
-to the hosts.
+**Try whois on the \emph{IP address} of www.sdu.dk .**  
+We start by gathering the ip with the `dig` command
+
+```console
+berkankutuk@kali:~$ dig sdu.dk
+; <<>> DiG 9.10.6 <<>> sdu.dk
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 43946
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1220
+;; QUESTION SECTION:
+;sdu.dk.				IN	A
+
+;; ANSWER SECTION:
+sdu.dk.			747	IN	A	89.188.87.235
+
+;; Query time: 56 msec
+;; SERVER: 1.1.1.1#53(1.1.1.1)
+;; WHEN: Mon Sep 26 14:35:07 CEST 2022
+;; MSG SIZE  rcvd: 51
+```
+
+Then we use the `whois` command with the IP we got
+```console
+berkankutuk@kali:~$ whois 89.188.87.235
+Domain:               sdu.dk
+DNS:                  sdu.dk
+Registered:           1997-10-09
+Expires:              2023-12-31
+Registration period:  5 years
+VID:                  no
+DNSSEC:               Signed delegation
+Status:               Active
+
+Registrant
+Handle:               ***N/A***
+Name:                 Syddansk Universitet (University of Southern Denmark)
+Address:              Campusvej 55
+Postalcode:           5230
+City:                 Odense M
+Country:              DK
+
+Nameservers
+Hostname:             ns1.sdu.dk
+Hostname:             ns2.sdu.dk
+Hostname:             ns3.sdu.dk
+```
+
+**†What do you learn about SDU’s network? In the protocol, note the IP
+range.**  
+`TEMP`
+
+Are there other Networking-Services @SDU which you could try?    
+`TEMP`
+
+**†What is the whois information for nextcloud.sdu.dk ? What do you observe
+in comparison to the whois-information you gathered for www.sdu.dk.**  
+
+We do the same procedure as before
+```console
+berkankutuk@kali:~$ dig nextcloud.sdu.dk
+; <<>> DiG 9.10.6 <<>> nextcloud.sdu.dk
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 15608
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1220
+;; QUESTION SECTION:
+;nextcloud.sdu.dk.		IN	A
+
+;; ANSWER SECTION:
+nextcloud.sdu.dk.	11737	IN	A	130.225.156.61
+
+;; Query time: 51 msec
+;; SERVER: 1.1.1.1#53(1.1.1.1)
+;; WHEN: Mon Sep 26 14:38:38 CEST 2022
+;; MSG SIZE  rcvd: 61
+```
+
+```console
+berkankutuk@kali:~$ whois 130.225.156.61
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.arin.net
+
+inetnum:      130.0.0.0 - 130.255.255.255
+organisation: Administered by ARIN
+status:       LEGACY
+
+whois:        whois.arin.net
+
+changed:      1993-05
+source:       IANA
+
+# whois.arin.net
+
+NetRange:       130.225.0.0 - 130.244.255.255
+CIDR:           130.225.0.0/16, 130.228.0.0/14, 130.226.0.0/15, 130.244.0.0/16, 130.240.0.0/14, 130.232.0.0/13
+NetName:        RIPE-ERX-130-225-0-0
+NetHandle:      NET-130-225-0-0-1
+Parent:         NET130 (NET-130-0-0-0-0)
+NetType:        Early Registrations, Transferred to RIPE NCC
+OriginAS:
+Organization:   RIPE Network Coordination Centre (RIPE)
+RegDate:        2003-11-12
+Updated:        2003-11-12
+Comment:        These addresses have been further assigned to users in
+Comment:        the RIPE NCC region.  Contact information can be found in
+Comment:        the RIPE database at http://www.ripe.net/whois
+Ref:            https://rdap.arin.net/registry/ip/130.225.0.0
+
+ResourceLink:  https://apps.db.ripe.net/search/query.html
+ResourceLink:  whois.ripe.net
+
+
+OrgName:        RIPE Network Coordination Centre
+OrgId:          RIPE
+Address:        P.O. Box 10096
+City:           Amsterdam
+StateProv:
+PostalCode:     1001EB
+Country:        NL
+RegDate:
+Updated:        2013-07-29
+Ref:            https://rdap.arin.net/registry/entity/RIPE
+
+ReferralServer:  whois://whois.ripe.net
+ResourceLink:  https://apps.db.ripe.net/search/query.html
+
+OrgAbuseHandle: ABUSE3850-ARIN
+OrgAbuseName:   Abuse Contact
+OrgAbusePhone:  +31205354444
+OrgAbuseEmail:  abuse@ripe.net
+OrgAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE3850-ARIN
+
+OrgTechHandle: RNO29-ARIN
+OrgTechName:   RIPE NCC Operations
+OrgTechPhone:  +31 20 535 4444
+OrgTechEmail:  hostmaster@ripe.net
+OrgTechRef:    https://rdap.arin.net/registry/entity/RNO29-ARIN
+
+
+# whois.ripe.net
+
+inetnum:        130.225.128.0 - 130.225.159.255
+netname:        SDU-v4-POOL-01
+country:        DK
+geofeed:        https://info.net.deic.dk/deic-geofeed.csv
+org:            ORG-SUI1-RIPE
+admin-c:        UN61-RIPE
+tech-c:         UN61-RIPE
+status:         ASSIGNED PA
+remarks:        Generated by DeiC on 2022-07-28 for more information contact netdrift@deic.dk
+mnt-by:         DEIC-MNT
+mnt-by:         AS1835-MNT
+created:        2015-12-10T10:05:14Z
+last-modified:  2022-07-28T11:50:21Z
+source:         RIPE
+
+organisation:   ORG-SUI1-RIPE
+org-name:       Syddansk Universitet, IT-service
+org-type:       other
+address:        Campusvej 55
+address:        5230 Odense M
+address:        DK
+mnt-ref:        AS1835-MNT
+mnt-by:         AS1835-MNT
+mnt-by:         DEIC-MNT
+created:        2012-05-03T10:51:17Z
+last-modified:  2022-01-28T14:00:25Z
+source:         RIPE # Filtered
+
+role:           DeiC Netdrift
+address:        DeiC
+address:        DTU Building 304
+address:        2800 Lyngby
+address:        Denmark
+phone:          +45 35 888 222
+fax-no:         +45 35 888 201
+admin-c:        AMD2-RIPE
+tech-c:         AMD2-RIPE
+tech-c:         JF6044-RIPE
+tech-c:         HUB10-RIPE
+nic-hdl:        UN61-RIPE
+mnt-by:         AS1835-MNT
+mnt-by:         DEIC-MNT
+created:        2008-11-24T13:12:55Z
+last-modified:  2022-01-28T14:00:26Z
+source:         RIPE # Filtered
+abuse-mailbox:  abuse@cert.dk
+
+% Information related to '130.225.0.0/16AS1835'
+
+route:          130.225.0.0/16
+descr:          Forskningsnettet-130.225
+origin:         AS1835
+mnt-by:         AS1835-MNT
+mnt-by:         DEIC-MNT
+created:        1970-01-01T00:00:00Z
+last-modified:  2022-01-28T14:00:18Z
+source:         RIPE
+
+% This query was served by the RIPE Database Query Service version 1.103 (WAGYU)
+```
+`TEMP`
 
 # Question: nmap
 Nmap scans can be set up to evade firewalls. Which tags would you use for:
