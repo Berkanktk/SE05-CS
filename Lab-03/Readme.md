@@ -475,3 +475,17 @@ Cons
 * `-O -sV` can lots of data that isnt necessary
 
 # Scanning with Legion
+## Windows
+
+## Linux
+
+# Scanning with Nessus / GVM
+## Windows
+
+## Linux
+
+# Comparing the tools
+
+# Collecting the Assessment Information
+
+# Completing the Assessment
