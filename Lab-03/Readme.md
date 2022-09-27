@@ -10,7 +10,7 @@ In this lab you will perform steps of an assessment:
 * [x] Linux Metasploitable3
 * [x] Windows Metasploitable3
 
-# Finding information with whois `TODO` 
+# Finding information with whois
 **Try whois on the \emph{IP address} of www.sdu.dk .**  
 We start by gathering the ip with the `dig` command
 
@@ -64,14 +64,14 @@ Hostname:             ns3.sdu.dk
 
 **†What do you learn about SDU’s network? In the protocol, note the IP
 range.**  
-`TEMP`
+Not much? 
 
-Are there other Networking-Services @SDU which you could try?    
-`TEMP`
+
+**Are there other Networking-Services @SDU which you could try?**  
+Yup
 
 **†What is the whois information for nextcloud.sdu.dk ? What do you observe
 in comparison to the whois-information you gathered for www.sdu.dk.**  
-
 We do the same procedure as before
 ```console
 berkankutuk@kali:~$ dig nextcloud.sdu.dk
@@ -94,6 +94,8 @@ nextcloud.sdu.dk.	11737	IN	A	130.225.156.61
 ;; WHEN: Mon Sep 26 14:38:38 CEST 2022
 ;; MSG SIZE  rcvd: 61
 ```
+
+And now the whois lookup
 
 ```console
 berkankutuk@kali:~$ whois 130.225.156.61
@@ -222,7 +224,8 @@ source:         RIPE
 
 % This query was served by the RIPE Database Query Service version 1.103 (WAGYU)
 ```
-`TEMP`
+
+Well we got a lot more information, but there is not much to compare.
 
 # Question: nmap
 Nmap scans can be set up to evade firewalls. Which tags would you use for:
@@ -460,5 +463,15 @@ Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft
 
 Nmap done: 1 IP address (1 host up) scanned in 111.78 seconds
 ```
+
+## Pros and cons
+Pros
+* `-sS` is silent
+* `-sT` uses the concept of a full three-way handshake to discover whether a given port is open, filtered, or closed according to the response it receives  
+* `-O -sV` gives a lot more valuable information about the OS and version numbers of the used services
+
+Cons
+* `-sT` is loud and is definitely discovered
+* `-O -sV` can lots of data that isnt necessary
 
 # Scanning with Legion
