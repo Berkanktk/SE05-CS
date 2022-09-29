@@ -476,16 +476,31 @@ Cons
 
 # Scanning with Legion
 ## Windows
+![Windows information](../Lab-03/Images/Legion/Legion_win_information.png)
+![Windows services 1](../Lab-03/Images/Legion/Legion_win_services1.png)
+![Windows services 2](../Lab-03/Images/Legion/Legion_win_services2.png)
+![Windows webserver](../Lab-03/Images/Legion/Legion_win_webserver.png)
 
 ## Linux
+![Linux information](../Lab-03/Images/Legion/Legion_linux_information.png)
+![Linux services](../Lab-03/Images/Legion/Legion_linux_services1.png)
+![Linux webservers](../Lab-03/Images/Legion/Legion_linux_webservers.png)
+
 
 # Scanning with Nessus / GVM
+Nessus was choosen for both Metasploitable images.
+
 ## Windows
 
+
 ## Linux
+
 
 # Comparing the tools
 
+
 # Collecting the Assessment Information
 
+
 # Completing the Assessment
+* 
