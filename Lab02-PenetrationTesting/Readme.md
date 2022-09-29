@@ -8,7 +8,7 @@ Done (See Lab-01b)
 # 02a Group work: thinking about threats
 **Brain storm about how the attack surface looks like, i.e., whereone could attack the system.**
 
-![Thinking about threats](/Lab-02/2a_thinking_about_threats.png)
+![Thinking about threats](/Lab02-PenetrationTesting/2a_thinking_about_threats.png)
 
 **Answers:**
 * Spoofing
