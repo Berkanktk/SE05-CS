@@ -622,10 +622,12 @@ that should be remediated immediately.
 In general both of the systems use old versions of FTP and SSH, which also can lead to unauthorized attacks.
 
 **Different criticality levels of the services**  
-Windows
+Windows  
+
 ![Windows](../Lab03-Assessment/Images/Overall_win.png)
 
-Linux
+Linux  
+
 ![Windows](../Lab03-Assessment/Images/Overall_linux.png)
 
 **Issues for prioritisation**  
