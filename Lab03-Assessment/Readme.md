@@ -472,35 +472,165 @@ Pros
 
 Cons
 * `-sT` is loud and is definitely discovered
-* `-O -sV` can lots of data that isnt necessary
+* `-O -sV` can lots of data that isn't necessary
 
 # Scanning with Legion
 ## Windows
-![Windows information](../Lab-03/Images/Legion/Legion_win_information.png)
-![Windows services 1](../Lab-03/Images/Legion/Legion_win_services1.png)
-![Windows services 2](../Lab-03/Images/Legion/Legion_win_services2.png)
-![Windows webserver](../Lab-03/Images/Legion/Legion_win_webserver.png)
+![Windows information](../Lab03-Assessment/Images/Legion/Legion_win_information.png)
+![Windows services 1](../Lab03-Assessment/Images/Legion/Legion_win_services1.png)
+![Windows services 2](../Lab03-Assessment/Images/Legion/Legion_win_services2.png)
+![Windows webserver](../Lab03-Assessment/Images/Legion/Legion_win_webserver.png)
 
 ## Linux
-![Linux information](../Lab-03/Images/Legion/Legion_linux_information.png)
-![Linux services](../Lab-03/Images/Legion/Legion_linux_services1.png)
-![Linux webservers](../Lab-03/Images/Legion/Legion_linux_webservers.png)
+![Linux information](../Lab03-Assessment/Images/Legion/Legion_linux_information.png)
+![Linux services](../Lab03-Assessment/Images/Legion/Legion_linux_services1.png)
+![Linux webservers](../Lab03-Assessment/Images/Legion/Legion_linux_webservers.png)
 
 
 # Scanning with Nessus / GVM
-Nessus was choosen for both Metasploitable images.
+Nessus was chosen for both Metasploitable images.
 
 ## Windows
-
+See the Nessus Windows report [here](../Lab03-Assessment/Nessus-reports/Windows-metasploitable.pdf).
+![Windows example](../Lab03-Assessment/Images/Nessus/Windows-example.png)
 
 ## Linux
-
+See the Nessus Ubuntu report [here](../Lab03-Assessment/Nessus-reports/Linux-metasploitable.pdf).
+![Ubuntu example](../Lab03-Assessment/Images/Nessus/Linux-example.png)
 
 # Comparing the tools
+## Nmap VS Legion VS Nessus
+Nmap is a simple network exploration tool whereas Legion is a semi-automatic network penetration framework. Nmap can 
+provide a list of open ports, running services, OS-versions and lots of other network related things. Legion 
+provides the same network scanning results as Nmap in a GUI, while also doing directory scans and password guessing 
+by trying to bruteforce login forms. Both Nmap and Legion is free of any costs.
 
+Some services the Legion framework provides:  
+* Nmap
+* Dirbuster
+* Nikto
+* Hydra
+* SMBenum
+* And many scheduled scripts
+
+Nessus is a vulnerability scanner tool and is made specially for vulnerability assessments. It uses the CVE 
+architecture in order to identify exploits and other vulnerabilities.
+
+### Pros and cons
+Nmap
+
+| Pros                     | Cons                                                      |
+|--------------------------|-----------------------------------------------------------|
+| Fast results             | Misses automatic CVE detection                            |
+| Many manual scan options | Results can be unmanageable and in some cases troublesome |
+| Can run scripts          |                                                           |
+
+Legion
+
+| Pros                                  | Cons                                                  |
+|---------------------------------------|-------------------------------------------------------|
+| Runs many services in one             | Lots of old dependecies                               |
+| User-friendly config screen           | Can be slow due to running all the different services |
+| Lots of scanning options              |                                                       |
+| Can run scripts                       |                                                       |
+| GUI based                             |                                                       |
+| Shows images and websites it collects |                                                       |
+| Automatic detection of CVEs           |                                                       |
+
+
+Nessus
+| Pros                                     | Cons                                              |
+|------------------------------------------|---------------------------------------------------|
+| Intuitive user interface                 | Consumes lots of resources                        |
+| Best vulnerability scanner in the market | Can become very slow when scanning large datasets |
+| Easy to install and setup                | Professional version is very expensive            |
+| Flexible scanning options                |                                                   |
+| Provides exportable reports              |                                                   |
 
 # Collecting the Assessment Information
+The following section will give an overview of the two metasploitable images, and their vulnerable services. Lastly 
+one of the listed services(highest base score) will be described for each of the systems.
 
+## Windows
+**Tools and resources used:** Nmap, Legion & Nessus  
+**Top 4 vulnerable services** 
+1. SSH, port 22, version OpenSSH 7.1
+2. HTTP, port 80, version Microsoft IIS httpd 7.5
+3. HTTP, port 8080, version Sun GlassFish Open Source Edition  4.0
+4. Microsoft-ds, port 445, version Microsoft Windows Server 2008 R2
+
+### Microsoft RDP - Uncredentialed check
+**The underlying issue**   
+The running Remote Desktop Protocol(RDP) service on the system is vulnerable to a remote code execution.
+
+**What can be achieved?**  
+The attacker can exploit this vulnerability by using specially crafted requests which gives the attacker the ability 
+to execute arbitrary code on the server.
+
+**How severe is that issue?**  
+Critical, base score of 9.8 (CVSS V3).
+
+**Impact for a real system**  
+If not updated, a successful exploitation could lead to the attacker installing programs, view, change and even 
+delete data on the system. This also gives the attacker a chance to create a new account with full user rights on 
+the system.
+
+**How critical you would assess the issue**  
+The severity is marked as 5/5 since this exploit requires no user interaction, and gives the attacker the ability to 
+remotely execute code.
+
+**Sources**
+* [CVE-2019-0708](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-0708)
+* [Microsoft RDP RCE.](https://www.tenable.com/plugins/nessus/125313)
+* [Customer guidance.](https://support.microsoft.com/en-us/topic/customer-guidance-for-cve-2019-0708-remote-desktop-services-remote-code-execution-vulnerability-may-14-2019-0624e35b-5f5d-6da7-632c-27066a79262e)
+
+## Linux
+**Tools and resources used:** Nmap, Legion & Nessus  
+**Top 4 vulnerable services**
+1. FTP, port 21, version ProFTPD 1.3.5
+4. SSH, port 22, version OpenSSH 6.6.1p1
+3. SMB, port 445, version Samba smbd 3.X - 4.X
+2. IPP, port 631, version CUPS 1.7
+
+### SMB - Signing not required
+**The underlying issue**   
+The service running on port 445 which is an SMB server are vulnerable to a non-authorized attack.
+
+**What can be achieved?**  
+A remote attacker can exploit this vulnerability and thereby conduct a man-in-the-middle attack against the SMB server.
+
+**How severe is that issue?**  
+Medium, base score of 5.3 (CVSS V3).
+
+**Impact for a real system**  
+When message signing isn't enforced by the host's configuration the outcome on a real server could be a MITM attack 
+thereby giving the attacker the ability to relay information.
+
+**How critical you would assess the issue**  
+The severity is marked as 2/5 since  this is a configuration error and not a bug.
+
+**Sources** 
+- [SMB Signing not required.](https://www.tenable.com/plugins/nessus/57608)
+- [smb.conf](https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html)
 
 # Completing the Assessment
-* 
+**Overall review of the security concerns**  
+The Linux metasploitable running Ubuntu has a few but still considerable vulnerabilities that should be mitigated in 
+order to improve security and integrity of the system. The windows metasploitable has some major vulnerabilities 
+that should be remediated immediately. 
+
+In general both of the systems use old versions of FTP and SSH, which also can lead to unauthorized attacks.
+
+**Different criticality levels of the services**  
+Windows
+![Windows](../Lab03-Assessment/Images/Overall_win.png)
+
+Linux
+![Windows](../Lab03-Assessment/Images/Overall_linux.png)
+
+**Issues for prioritisation**  
+The Windows metasploitable image has some critical issues such as using old versions of Apache webservers, PHP and 
+Windows DNS clients. Some of these resulting in remote code execution and affecting the overall system integrity.
+
+The Linux metasploitable has some medium to small scale issues, where the first focus should be to enforce the 
+security by updating the configuration file for the active SMB server.
