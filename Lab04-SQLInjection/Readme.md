@@ -100,7 +100,7 @@ They are in plain text. I would have used hashed and salted values to make every
 
 **†Which other problem allows you to get into the machine using ssh? How could this be prevented?**  
 Not a secure SSH configuration. Iptables, use of another port and stronger passwords could be some options. But best of 
-them would be to completely remote the option to login with passwords, and instead use public/private keys for 
+them would be to completely remove the option to login with passwords, and instead use public/private keys for 
 authentication.
 
 ## Elevation of Privilege
