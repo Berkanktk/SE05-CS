@@ -59,8 +59,7 @@ berkankutuk@kali:~$ .\john.exe passwordfile –wordlist=”wordlist.txt # To gen
 berkankutuk@kali:~$ passwd berkankutuk # Changing password
 ```
 
-### Check for open sockets with netstat or ss. Start the apache2 web server and check again.
-Use nmap on Kali to find the other virtual machines**  
+### Use nmap on Kali to find the other virtual machines
 
 ```console
 berkankutuk@kali:~$ nmap -sT -A 10.0.2.0/24
@@ -217,7 +216,7 @@ Meterpreter  : x86/linux
 Reverse shell
 
 **Explain whether Metasploitable3 is vulnerable to this exploit.**  
-?
+It is
 
 **Explain how your client that is using the vulnerable machine (Metasploitable3) should mitigate the risks of falling prey to this exploit.**  
 1. Educate staff into not opening random files on their computer

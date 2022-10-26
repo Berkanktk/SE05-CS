@@ -64,7 +64,9 @@ Hostname:             ns3.sdu.dk
 
 **†What do you learn about SDU’s network? In the protocol, note the IP
 range.**  
-Not much? 
+* Sentia.dk
+* RIPE
+* 89.188.80.0 - 89.188.87.255
 
 
 **Are there other Networking-Services @SDU which you could try?**  
