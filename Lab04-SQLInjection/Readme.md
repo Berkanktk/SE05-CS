@@ -10,7 +10,8 @@ open. What are the port numbers?**
 80 for the HTTP server, 3306 for the mysql server.
 
 
-**Nessus does say it was unable to get version number for the MySQL server because it is restricted. Reflect on that.**
+**Nessus does say it was unable to get version number for the MySQL server because it is restricted. Reflect on that.**  
+
 **†Does it mean the MySQL server is protected against cyber attacks? From Kali, try `mysql -h <METASPLOITABLE IP> -P 
 3306` :**  
 
@@ -22,10 +23,10 @@ This makes it harder for a bad intentional hacker to find any vulnerabilities, b
 protected
 
 **†How could that protection look like?**  
-?
+Using a firewall
 
 **†And what exactly would it protect against?**  
-See data about the database. (tables etc)
+It protects your data by monitoring, alerting, and blocking unauthorized database activity without any changes made to the applications.
 
 ## Spying with SQL Injection
 **Try accessing the web server through a browser by just entering the IP number and port number: <IP>:80 and hit enter. 
@@ -39,7 +40,7 @@ Fuck yes we're in baby!
 
 Obviously not
 
-**Now press the back button in the browser. Lets try the first SQL injection.Assuming that the text field’s input is 
+**Now press the back button in the browser. Lets try the first SQL injection. Assuming that the text field’s input is 
 used directly in a SQL query**  
 `' OR 1=1#` seems to work
 
@@ -48,7 +49,7 @@ used directly in a SQL query**
 ![SQL Injection](Images/SQLi_result.png)
 
 **†Please shortly discuss your opinion of this web server’s configuration
-concerning directly listings.**
+concerning directly listings.**  
 Its bad and concerning since the database to the "payroll app?" is vulnerable to SQL injection. The fields are not 
 sanitized
 
@@ -114,13 +115,13 @@ root@ubuntu:~# whoami
 root
 ````
 
-**†Which do you see, and how would you address them?**
+**†Which do you see, and how would you address them?**  
 Users have root access, this should be prevented by following the principle of least-privilege.
 
-**†Can SQL Injection expose an otherwise inaccessible data base server?**
+**†Can SQL Injection expose an otherwise inaccessible data base server?**  
 Yes that is possible
 
-**†How likely do you think an attack scenario as presented here is?**
+**†How likely do you think an attack scenario as presented here is?**  
 It's much lower than in the earlier days. IT security today have a few standards such as hashing the passwords of 
 their users and preventing such simple attacks by using the principle of least-privilege. 
 
@@ -227,8 +228,8 @@ if($_POST['s']){
 We can see the database credentials
 
 **Whats the user name, password and database name?**  
-Username: root
-Password: sploitme
+Username: root  
+Password: sploitme  
 DB Name: payroll
 
 **Accessing the database**
@@ -253,10 +254,10 @@ mysql>
 
 ````
 Quick info about the above statement: It tries to connect to the MySQL server.
-* "-h 127.0.0.1" specifies the data base server with localhost’s IP.  
-* "-P 3306" is the port number.   
-* "-u root" specifies root as the user name.  
-* "-p" is to ensure that your are prompted for a password.
+* "-h" 127.0.0.1" specifies the data base server with localhost’s IP.  
+* "-P" 3306" is the port number.   
+* "-u root" specifies root as the username.  
+* "-p" is to ensure that you are prompted for a password.
 
 **†What was the problem with the web application?**  
 The web application is using string concatenation to create a SQL statement.
@@ -269,7 +270,7 @@ Port: 3306
 Using SQL injection
 
 **†And what were you able to do?**  
-Optain user credentials
+Obtain user credentials
 
 **†How would you suggest to fix the problem? (Do some online research about SQL injections solutions.)**  
 I would sanitize the inputs in order to fix the problem.
@@ -316,13 +317,13 @@ berkankutuk@kali:~$ john --format=crypt unshadowed.txt
 ````
 
 **†What are benefits of performing this scan after already having full access?**  
-?
+We get to fully discover the entries in the database by doing it.
 
 **†Thinking as an attacker, what would your next steps be?**  
 Create another user that has root access so i can SSH back whenever i want.
 
 **†As an operator, what would you do to counteract?**  
-Remove any unknown user and then enforce least-privilege
+Remove any unknown users and then enforce least-privilege
 
 # Obfuscated Malware
 The script is in the file called "scan.pdf" below. You can copy and paste it and
@@ -335,7 +336,7 @@ anything strange within the script. Take some time to analyze the code. I.e.,
 analyse it without breaking your system. :-)
 
 **†Task 1 - Take your time to look at the code. Is it readable?**  
-No it is encrypted using base64
+No, it is encrypted using base64
 
 **Task 2 - The script is Base64 encoded charset UTF-8. You need to decode the
 python script by copying the "jibberish" text that is between the quotes for the
@@ -345,8 +346,7 @@ Decrypted using https://gchq.github.io/CyberChef/
 
 **†Task 3 - What does the code do? Is it a malicious software and if so how would
 you classify it?**  
-It's a port scanner that has a reverse shell configurator built in. When ran, the script fetches another script from a 
-website and then runs the fetches script.
+It's a port scanner that has a reverse shell configurator built in. When ran, the script fetches another script from a website and then runs the fetched script.
 
 After this, a reverse shell is added which gives another computer that is listening access to a shell.
 
@@ -358,7 +358,7 @@ Finally, the earlier fetched script is deleted and the script ends.
    1. test.py
    2. test.txt
 3. Spin up a webserver: `python -m http.server 8000`
-4. From the listener machine `nc -lvp 1234`
+4. From the listener machine: `nc -lvp 1234`
 5. From the sender machine
    1. `chmod 744 scan.py`
    2. `python scan.py`
