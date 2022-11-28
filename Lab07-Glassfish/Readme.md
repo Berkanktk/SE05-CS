@@ -18,7 +18,7 @@ While scanning for vulnernable services in Exercise~03, Glassfish running on por
 should have come up.
 
 # Background
-**†What does https actually provide protection for?**
+**†What does https actually provide protection for?**  
 HTTPS which is an ecrypted version of the protocol provides protection against data/packet sniffing also called MITM attacks.  
 
 
