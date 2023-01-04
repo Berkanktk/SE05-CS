@@ -1,5 +1,5 @@
 # Exercises
-# 1a Installation og Metasploitable and Kali Linux
+# 1a Installation of Metasploitable and Kali Linux
 See `Exercises.pdf
 
 # 1b. MCQ Test on itslearning
