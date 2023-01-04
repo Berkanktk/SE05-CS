@@ -224,7 +224,7 @@ It is
 3. Software restriction policies
 4. Disable .exe files to run from specified directories
 5. Setup a firewall
-6. Never give admin acess to end users
+6. Never give admin access to end users
 7. Segregate network
 
 **Explain how you can make someone download and install the malicious file in his/her environment that is vulnerable as well as one that is not vulnerable.**    
