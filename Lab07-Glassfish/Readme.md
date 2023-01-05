@@ -1,7 +1,6 @@
 # Exercises
 Penetration testing exercise using metasploit on Glassfish. The exercise
-targets the Glassfish application server running under Windows in the metas-
-ploitable~3 image. The test is performed via a brute force attack against the
+targets the Glassfish application server running under Windows in the metasploitable3 image. The test is performed via a brute force attack against the
 login page.
 
 In this exercise we need the Kali machine (for penetration testing) and the vulnerable
@@ -97,11 +96,10 @@ Weak password that are common and unencrypted passwords
 this issue?**   
 Either random-generate or encrypt passwords.
 
-
 **†How is this attack type related to the internet of things, internet routers, and, e.g.,
 virtual machines?**  
 Trial and error method in order to guess user credentials for an authorized system.
 
 **†Do you know a way in which https could make the connection more secure against this
 kind of attack?**  
-By managing the incorrect login attempts and asking for CAPTCHA. Furthermore, by encypting the packet values so no others can eavedrop and thereby see the credentials in plain text.
+By managing the incorrect login attempts and asking for CAPTCHA. Furthermore, by encrypting the packet values, so no others can eavesdrop and thereby see the credentials in plain text.
