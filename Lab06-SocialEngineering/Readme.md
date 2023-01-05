@@ -29,8 +29,7 @@ For this exercise, we will have two teams, the attackers and the defenders. In e
 
 ## The Defenders will
 **†Tailor a course to DAN, to make sure that he is aware of and protected in the best possible way against social engineering attacks. Optionally, you can think about a nice concept on how to do this, but this is not the essential part. Discuss yourchoices.**  
-* First introduce him for the risks of liking the social democrats
-* Incorporate procedures as
+* Incorporate procedures such as
   * Request ID verification from the caller
   * Never click on an email you don’t recognize
 * Introduce Principle of least privileges
