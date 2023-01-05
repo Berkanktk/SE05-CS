@@ -33,7 +33,7 @@ Answers
 | Elevation of privilege | Authorization | Attackers exploit a weakness in the app to gain elevated privileges in order to manipulate the mobile system. |
 
 ## Exercise 8.3: Discuss your Data Flow Diagram & STRIDE 
-Discuss exercises 8.1 & 8.2, ideally with another group. Try to complete your diagram &STRIDE.
+**Discuss exercises 8.1 & 8.2, ideally with another group. Try to complete your diagram &STRIDE.**  
 Done
 
 **† Please include your flow diagram with a description of the essential parts; provide list or table which details your findings using STRIDE.**   
